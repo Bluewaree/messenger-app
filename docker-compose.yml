@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  app: &app
+    build: .
+    env_file: .env
+    links:
+      - redis
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: >
+      bash -c "python manage.py runserver 0.0.0.0:8000"
+
+  migrate:
+    <<: *app
+    command: >
+      bash -c "python manage.py migrate"
+    ports: []
+    depends_on:
+      - app
+
+  redis:
+    image: redis
+
