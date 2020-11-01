@@ -10,6 +10,7 @@ def chat_view(request):
             return render(request, "chat.html", {"ws_url": settings.WESBSOCKET_URL, "username": username})
 
     if request.session.get("username", None):
+        username = request.session["username"]
         return render(request, "chat.html", {"ws_url": settings.WESBSOCKET_URL, "username": username})
     else:
         return render(request, "input.html")
