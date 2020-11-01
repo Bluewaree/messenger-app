@@ -27,7 +27,6 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
         message = content["message"]
         username = content["username"]
         await self.create_message_instance(message, username)
-        print("yes")
         return {
             "message": message,
             "username": username
