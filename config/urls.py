@@ -19,11 +19,6 @@ from django.conf.urls import url
 from django.http import HttpResponse
 
 urlpatterns = [
-    url(
-        r"^$",
-        lambda request: HttpResponse("Alive!!!", content_type="application/json"),
-        name="ping",
-    ),
     path('admin/', admin.site.urls),
-    path('chat/', include('chat.urls')),
+    path('', include('chat.urls')),
 ]
