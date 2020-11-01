@@ -9,7 +9,7 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{username}: {message}"
+        return f"{self.username}: {self.message}"
 
     def save(self, **kwargs):
         if self.message is None or self.username is None:

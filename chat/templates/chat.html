@@ -9,7 +9,7 @@
 <div class="container chat-container">
     <div class="messages-container">
         {% for message in messages %}
-            <div class="container message-container">
+            <div class="message-container">
                 <p class="message-headers">{{message.username}}: <label>{{message.created_at|date:'Y-m-d H:i'}}</label></p>
                 <p class="message">{{message.message}}<p>
             </div>

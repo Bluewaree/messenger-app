@@ -33,5 +33,5 @@ def chat_view(request):
             }
         )
     else:
-        return render(request, "input.html")
+        return render(request, "input.html", {"ws_url": settings.WESBSOCKET_URL})
 
