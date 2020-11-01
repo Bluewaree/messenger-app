@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
+from configurations.values import Value
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,12 +80,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASE_URL = Value(
+    "postgres://postgres:password@db:5432/chat",
+    environ_name="DATABASE_URL",
+    environ_prefix="",
+)
+DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
+# "default": dj_database_url.parse(DATABASE_URL),
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 
 # Password validation
@@ -123,6 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 CACHES = {
     "default": {
@@ -140,3 +147,5 @@ CHANNEL_LAYERS = {
         "CONFIG": {"hosts": [f"{os.getenv('REDIS_URL', 'redis://redis:6379')}/1",]},
     },
 }
+
+WESBSOCKET_URL = os.getenv('WEBSOCKET_URL', 'localhost:8001/chat/')

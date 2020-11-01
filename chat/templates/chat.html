@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Online Chat
+{% endblock %}
+
+{% block content %}
+<div class="container chat-container">
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="message-container">
+                <p class="message-headers">{{message.username}}: <label>{{message.created_at|date:'Y-m-d H:i'}}</label></p>
+                <p class="message">{{message.message}}<p>
+            </div>
+        {% endfor %}
+    </div>
+    <form method="post" id="message-form">
+        <div class="form-group"> 
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Send</button>
+    </form>
+</div>
+{% endblock %}
