@@ -140,3 +140,5 @@ CHANNEL_LAYERS = {
         "CONFIG": {"hosts": [f"{os.getenv('REDIS_URL', 'redis://redis:6379')}/1",]},
     },
 }
+
+WESBSOCKET_URL = os.getenv('WEBSOCKET_URL', 'localhost:8001')
