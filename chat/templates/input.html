@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Online Chat
+{% endblock %}
+
+{% block content %}
+<div class="form-container container">
+    <p class="row justify-content-center">Choose a username to enter the chat<p>
+    <form class="form-inline d-flex justify-content-center md-form form-sm" method="post">
+        {% csrf_token %}
+        <input class="form-control-sm mr-3 w-75" type="text" name="username" placeholder="Search" aria-label="Search">
+        <i class="fas fa-search" aria-hidden="true"></i>
+    </form>
+ <div/>
+{% endblock %}
