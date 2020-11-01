@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 class Message(models.Model):
@@ -8,3 +10,9 @@ class Message(models.Model):
 
     def __str__(self):
         return f"{username}: {message}"
+
+    def save(self, **kwargs):
+        if self.message is None or self.username is None:
+            raise ValidationError(_("Message and username fields must be valid"))
+
+        return super().save(**kwargs)
