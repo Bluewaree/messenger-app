@@ -24,3 +24,13 @@ input:focus{
     animation-duration: 1s;
     margin-top:20%;
 }
+
+.chat-container {
+    max-width: 600px;
+}
+
+.messages-container {
+    margin-top: 10%;
+    height: 400px;
+    overflow: scroll;
+}
