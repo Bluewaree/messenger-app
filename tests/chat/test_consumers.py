@@ -31,7 +31,7 @@ class TestChatConsumer:
     def check_message_object_fields(self):
         message = Message.objects.last()
         assert message.message == self.message
-        assert message.message == self.username
+        assert message.username == self.username
 
     @pytest.mark.django_db
     @pytest.mark.asyncio
@@ -46,11 +46,12 @@ class TestChatConsumer:
         self.message = "Hello"
         self.username = "communicator1"
         await self.communicators[0].send_json_to({"message": self.message, "username": self.username})
-        messages = await self.check_message_objects_count(1)
-        messages = await self.check_message_object_fields()
 
         for communicator in self.communicators:
             response = await communicator.receive_json_from()
             assert response["data"]["message"] == "Hello"
             assert response["data"]["username"] == "communicator1"
             await communicator.disconnect()
+
+        messages = await self.check_message_objects_count(1)
+        messages = await self.check_message_object_fields()
