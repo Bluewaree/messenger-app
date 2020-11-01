@@ -144,4 +144,4 @@ CHANNEL_LAYERS = {
     },
 }
 
-WESBSOCKET_URL = os.getenv('WEBSOCKET_URL', 'localhost:8001')
+WESBSOCKET_URL = os.getenv('WEBSOCKET_URL', 'localhost:8001/chat/')

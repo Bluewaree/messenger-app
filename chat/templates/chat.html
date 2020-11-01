@@ -9,10 +9,13 @@
 <div class="container chat-container">
     <div class="messages-container">
         {% for message in messages %}
-            <p>{{message.usrname}}: {{message.message}}</p>
+            <div class="container message-container">
+                <p class="message-headers">{{message.username}}: <label>{{message.created_at|date:'Y-m-d H:i'}}</label></p>
+                <p class="message">{{message.message}}<p>
+            </div>
         {% endfor %}
     </div>
-    <form method="post">
+    <form method="post" id="message-form">
         <div class="form-group"> 
             <textarea class="form-control" id="message" name="message" rows="3"></textarea>
         </div>

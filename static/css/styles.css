@@ -34,3 +34,16 @@ input:focus{
     height: 400px;
     overflow: scroll;
 }
+
+.message-headers{
+    font-weight: 600;
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom:-10px;
+}
+
+.message-headers label{
+    font-weight: normal;
+    font-size: 13px;
+    color: grey;
+}
